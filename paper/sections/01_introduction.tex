@@ -1,0 +1,43 @@
+\section{Introduction}
+\label{sec:intro}
+
+\emph{The standard critically damped Langevin diffusion (CLD)~\cite{dockhorn2022cld} puts noise on the velocity only and specifies it through its stochastic differential equation (SDE). It never meets the failure modes studied here.}
+This paper continues Ref.~\cite{namba2026paperG} (paper G).
+There, the CLD flow was combined with an isotropic noise schedule specified by its marginals, $\sigma(t)=\smin e^{rt}$.
+Such a schedule blurs positions as well as velocities.
+Below the stretching rate $\kappa$ of the flow, the clipped reverse SDE is biased~\cite{namba2026threshold}.
+A corrected SDE and the probability-flow ODE stay exact.
+Paper G measured the bias.
+It also found that, with a learned score, the probability-flow ODE was fragile: in the setting studied there ($\smin=0.005$, setting D), a few trajectories diverged.
+
+Two questions were left open.
+\emph{First}, the corrected SDE was integrated with Euler--Maruyama, whose first-order step error is large at coarse steps.
+Can a second-order integrator make it usable at a coarse step \emph{with a learned score}?
+\emph{Second}, the ODE fragility may depend on the noise geometry, and not only on the flow.
+Adding the same isotropic blur in rescaled coordinates $Y=PZ$ changes the noise shape in the original coordinates.
+It also changes the threshold to $\kP$, a logarithmic norm of the flow~\cite{soderlind2006lognorm}.
+Does the choice of this \emph{metric} $P$ change how often the learned probability-flow ODE breaks?
+And if so, by what mechanism?
+
+Our answers, all for setting D on a four-dimensional Gaussian mixture, are as follows.
+(1)~A Heun-type integrator of the corrected SDE, driven by a learned score, reaches a median $|L|\leq0.083$ at 281 steps ($h\approx0.032$) in all four metrics tested (Sec.~\ref{sec:heun}).
+Euler--Maruyama at the same step gives $0.42$--$0.55$.
+At 140 steps the Heun-type sampler no longer suffices.
+(2)~With the metric $P=I$ ($\kP=2>r=1$), the learned probability-flow ODE broke for 10 of 12 networks.
+With metrics of $\kP\leq0$ it broke for 0 of 4 ($\optc{1.25}$), 1 of 4 ($\optc{5}$) and 2 of 8 ($\dtwo$) networks (Sec.~\ref{sec:metric}).
+Only part of this was significant in the pre-registered tests.
+(3)~We traced the mechanism (Sec.~\ref{sec:mechanism}).
+The breaking trajectories start in the tail of the prior.
+They pick up most of their deviation from the exact path early, while $\sigma$ is large, and jump in the last stretch of the reverse time.
+The jump is not explained by how strongly the exact-score flow amplifies a perturbation in each metric; that ordering is opposite to the fragility.
+With the learned score itself, the last stretch amplifies perturbations of a part of the tail points by orders of magnitude, but it does so in every metric (Sec.~\ref{sec:h9}); how the metric acts remains open.
+
+Most of these experiments were pre-registered, and several predictions failed.
+We list all of them in Sec.~\ref{sec:prereg}.
+
+Throughout, we mark the status of every statement:
+a \emph{Proposition} is proved (in an earlier paper, which we cite);
+a \emph{Pre-registered test} has its criterion fixed and time-stamped before the runs, and we report its outcome, supported or not;
+an \emph{Observation} is measured but was not pre-registered, or is a description of data beyond a test;
+a \emph{Conjecture} has not been tested.
+There are no new proofs or derivations in this paper; all new results are numerical.

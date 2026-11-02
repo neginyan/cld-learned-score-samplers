@@ -1,0 +1,15 @@
+\begin{table}[t]
+\caption{Probability-flow ODE \Sc{} with learned scores ($h\approx0.002$, $N=20\,000$, two seeds per network). A network is broken if either run is. Outliers: per run, out of $20\,000$. $|L|$: median over the runs that did not break.}
+\label{tab:ode}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+ & $\kP$ & networks & runs & outliers & $|L|$ \\
+ & & broken & broken & per run & unbroken \\
+\hline
+$P=I$ & $2$ & 10/12 & 20/24 & 2--24 & 0.453 \\
+$\dtwo$ & $0$ & 2/8 & 2/16 & 2--9 & 0.164 \\
+$\optc{1.25}$ & $0$ & 0/4 & 0/8 & 0--3 & 0.072 \\
+$\optc{5}$ & $-6$ & 1/4 & 1/8 & 0--6 & 0.104 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}

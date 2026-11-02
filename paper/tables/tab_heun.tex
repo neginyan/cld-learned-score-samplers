@@ -1,0 +1,23 @@
+\begin{table}[t]
+\caption{Corrected SDE \Sb{} with a learned score: median $|L|$ over 8 runs (networks 1--4 $\times$ seeds 0, 1), Heun-type integrator [Eq.~\eqref{eq:heun}] and Euler--Maruyama (EM) on the same Brownian path. $\infty$: at least half of the runs non-finite. $n_{\rm nf}$: non-finite Heun runs; $n_{\rm o}$: Heun runs with at least one outlier.}
+\label{tab:heun}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+ & $K=140$ & $281$ & $562$ & $1124$ \\
+ & $h\approx0.064$ & $0.032$ & $0.016$ & $0.008$ \\
+\hline
+$P=I$ Heun & $\infty$ & 0.056 & 0.040 & 0.038 \\
+\quad EM & $\infty$ & 0.416 & 0.246 & 0.140 \\
+\quad $n_{\rm nf}$, $n_{\rm o}$ & 7, 8 & 0, 1 & 0, 0 & 0, 0 \\
+$\dtwo$ Heun & $\infty$ & 0.083 & 0.059 & 0.047 \\
+\quad EM & $\infty$ & 0.543 & 0.333 & 0.184 \\
+\quad $n_{\rm nf}$, $n_{\rm o}$ & 4, 4 & 0, 1 & 0, 1 & 0, 0 \\
+$\optc{1.25}$ Heun & 0.153 & 0.054 & 0.036 & 0.035 \\
+\quad EM & $\infty$ & 0.445 & 0.257 & 0.144 \\
+\quad $n_{\rm nf}$, $n_{\rm o}$ & 3, 3 & 0, 1 & 0, 0 & 0, 0 \\
+$\optc{5}$ Heun & 0.207 & 0.073 & 0.035 & 0.027 \\
+\quad EM & 0.685 & 0.552 & 0.342 & 0.189 \\
+\quad $n_{\rm nf}$, $n_{\rm o}$ & 0, 0 & 0, 0 & 0, 0 & 0, 0 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}

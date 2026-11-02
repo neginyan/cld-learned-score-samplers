@@ -1,0 +1,10 @@
+\section*{Data and code availability}
+All code, stored results, the 28 trained networks and a verification script are in a repository to be made public:
+\url{https://github.com/neginyan/cld-learned-score-samplers}.
+Every number in the tables and figures is recomputed from the stored results, and a sample of the runs is re-run from the networks, by \texttt{verification/run\_all.py} (about 15 minutes on two CPU cores).
+No GPU was used.
+
+\begin{acknowledgments}
+The author used AI assistants in this work. Anthropic Claude (\mbox{claude-opus-5-5}) was used in two separate sessions. In the first session it planned the experiments and wrote the instructions for each stage, including the pre-registered predictions to be tested, re-ran every verification suite and the reproduction script of the repository independently, recomputed the test statistics, and reviewed and edited the manuscript. In the second session it trained the 28 score networks, ran the samplers and the mechanism experiments, wrote the pre-registrations before the runs, the evaluation and verification code, and drafted the text; it also found and reported its own errors in intermediate summaries, which are corrected here. Results were passed between the sessions as written summaries and checked in the first session. Google Gemini (Gemini 4 Argon) and OpenAI ChatGPT (GPT-5.6 Luna) independently reviewed the manuscript, recomputing the test statistics and the eigenvalues of the metrics; their comments led to the explicit statement of Test~\ref{test:h2}, the midpoint rule for the noise covariance and the scope of the Heun-type scheme, the metric matrices and training details in App.~\ref{app:methods}, the treatment of non-finite runs, and the remark on the direction of the injected perturbations in Sec.~\ref{sec:h9}.
+The author directed the research, made all decisions on its content, and takes full responsibility for this article.
+\end{acknowledgments}

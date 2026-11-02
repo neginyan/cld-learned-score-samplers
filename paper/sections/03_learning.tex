@@ -1,0 +1,26 @@
+\section{Learned scores}
+\label{sec:learning}
+
+\paragraph*{Training.}
+The networks are trained as in paper G, with the data mapped to $Y=PZ$ for each metric.
+We use denoising score matching~\cite{vincent2011dsm,hyvarinen2005score} in the $\varepsilon$ form with unit weight.
+Each network is a multilayer perceptron with three hidden layers of 128 SiLU units.
+It is trained with Adam and cosine decay for 300\,000 steps on a training set of $200\,000$ samples, and the exponential moving average of its weights is used for sampling.
+The input is preconditioned by the data moments carried by the flow, in the spirit of Ref.~\cite{karras2022edm}.
+Half of each batch is drawn with $\sigma\in[\smin,10\smin]$.
+A network takes 23--28 minutes on one CPU core.
+Networks differ only in the seed of their initialization and training stream; every metric uses the same recipe.
+We trained 12 networks for $P=I$, 8 for $\dtwo$, and 4 each for $\optc{1.25}$ and $\optc{5}$: 28 in all.
+Training is resumable from checkpoints, and a resumed run reproduces an uninterrupted one bit for bit.
+
+\paragraph*{Score error.}
+We measure the relative mean-square error in $Z$,
+\begin{equation}
+e_Z(\sigma)=\frac{\mathbb E\,\bigl|P^{\top}(\shat-s)\bigr|^2}{\mathbb E\,\bigl|P^{\top}s\bigr|^2},
+\end{equation}
+where $s$ is the exact score of the forward mixture in $Y$, $P^{\top}s$ is the score in $Z$, and the expectations are over $p_t$.
+This is the quantity called the relative score error in paper G; it is a ratio of squares, so $e_Z=0.12$ corresponds to a root-mean-square error of about 35\% of the score.
+We average it over $\sigma\in[\smin,2\smin]$.
+On typical points it is $0.11$--$0.14$ for $P=I$, $0.18$--$0.22$ for $\dtwo$, $0.09$--$0.11$ for $\optc{1.25}$ and $0.26$--$0.33$ for $\optc{5}$ (Table~\ref{tab:nets} in App.~\ref{app:methods}).
+The typical error therefore does not follow the fragility of Sec.~\ref{sec:metric}: $P=I$ has a smaller error than $\dtwo$ and $\optc{5}$.
+The score errors in different metrics are weighted differently, so they are compared here only as reported numbers.

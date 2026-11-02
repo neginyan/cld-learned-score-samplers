@@ -1,0 +1,35 @@
+\section{Pre-registered predictions and their outcomes}
+\label{sec:prereg}
+
+Table~\ref{tab:prereg} lists every pre-registered prediction of the experiments reported here, in the order in which they were made.
+Counting each metric of H1 and H2 separately, there are nineteen predictions: five were supported, one was supported only in the uninformative sense explained in Sec.~\ref{sec:mechanism} (H7), and thirteen failed.
+Several failures changed the direction of the work: H3 located the damage before the last stretch, H5 showed that it is not made in a narrow window, and H6 showed that the exact-score amplification has the wrong order.
+H9 showed that the learned score amplifies deviations in the last stretch in every metric, so that this stage alone does not explain the role of the metric.
+
+\begin{table*}[t]
+\caption{All pre-registered predictions. ``Net'': networks are the unit (two runs of one network are not independent). Criteria and $p$ values are one-sided.}
+\label{tab:prereg}
+\small
+\begin{ruledtabular}
+\begin{tabular}{p{0.07\textwidth}p{0.33\textwidth}p{0.19\textwidth}p{0.3\textwidth}}
+Test & Prediction & Criterion & Outcome \\
+\hline
+H1 & $\dtwo$ breaks less often than $P=I$ & Fisher $p\leq0.05$, 4 vs 4 nets & 1/4 vs 4/4, $p=0.071$: \emph{not supported} \\
+H1 (secondary) & $\optc{1.25}$, $\optc{5}$ break less often than $P=I$ & Holm-corrected $p\leq0.05$ & $\optc{1.25}$ 0/4, $p=0.029$: supported; $\optc{5}$ 1/4, $p=0.071$: \emph{not supported} \\
+H2 & the ODE tolerates a step at least as coarse as with $P=I$ & median $|L|\leq0.1$ & $\optc{1.25}$ supported; $\dtwo$, $\optc{5}$ \emph{not supported} (learned-ODE floor $|L|\approx0.15$) \\
+H1$'$ & $\dtwo$ breaks less often than $P=I$ & Fisher $p\leq0.05$, 8 vs 8 nets & 2/8 vs 6/8, $p=0.066$: \emph{not supported} \\
+H3a & exact score below $\sigma=0.01$ removes the break & $\geq7$ of 8 runs & 2/8: \emph{not supported} \\
+H3b & learned score only below $\sigma=0.01$ keeps the break & $\geq5$ of 8 runs & 0/8: \emph{not supported} \\
+H4 & Heun-type \Sb{} beats EM; median $|L|\leq0.1$ at $h\approx0.032$ & both, $P=I$ and $\dtwo$ & supported (0.056, 0.083) \\
+H5 & a window inside $\sigma\in[0.03,0.1]$ reproduces the break & $\geq9$ of 12 runs & 0/12: \emph{not supported} \\
+H5$'$ & $[0.01,0.1]$ reproduces, $[0.03,0.1]$ does not & $\geq9$ and $\leq3$ of 12 & 0/12 and 0/12: \emph{not supported} \\
+H6a & exact-score amplification largest for $P=I$ & median over tail points & $\optc{5}$ largest (15.9 vs 6.8): \emph{not supported} \\
+H6b & amplification ordered by $\kP$ & $P=I$ above $\dtwo$ and $\optc{1.25}$, both above $\optc{5}$ & nearly reversed: \emph{not supported} \\
+H7 & tail score error $e^\ast$ predicts which new nets break & 4 of 4 correct & 4/4, but the rule said ``broken'' for all four: \emph{uninformative} \\
+H8 & as H4, for $\optc{1.25}$ and $\optc{5}$ & median $|L|\leq0.1$ at $h\approx0.032$ & supported (0.054, 0.073) \\
+H9a & learned-score amplification exceeds exact by an order & $R\geq10$ for $\geq12$ of 16 nets & 0/16 ($R=2.8$--$7.8$): \emph{not supported} \\
+H9b & \ldots more so for $P=I$, $\dtwo$ than $\optc{1.25}$, $\optc{5}$ & Mann--Whitney $p\leq0.05$ & $p=0.12$: \emph{not supported} \\
+H9c & as H9a, for the 90th percentiles & $R_{90}\geq10$ for $\geq12$ of 16 nets & 16/16: supported \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}

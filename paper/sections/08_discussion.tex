@@ -1,0 +1,18 @@
+\section{Practical implications and limits}
+\label{sec:discussion}
+
+\paragraph*{Implications.}
+(1)~For an isotropic marginal schedule on the CLD flow with a learned score, the corrected SDE \Sb{} with the Heun-type step of Eq.~\eqref{eq:heun} gave a median $|L|\leq0.083$ at 281 steps in all four metrics we tested.
+It needs no retraining.
+At 140 steps it did not suffice.
+(2)~If the learned probability-flow ODE is used with such a schedule, a metric with $\kP\leq r$ broke less often in our runs than $P=I$.
+At the network level this was established only for $\optc{1.25}$ in a pre-registered test ($p=0.029$, 0 of 4).
+The contrast between (1) and (2), the same learned scores giving a coarse, robust corrected SDE and a fragile probability-flow ODE, is consistent with paper G, where for a single Gaussian mode in the noise-dominated regime the corrected SDE damps a score error while the probability-flow ODE only rotates it~\cite{namba2026paperG}; we have not tested that mechanism in the present setting.
+(3)~A run with $|L|$ in the tens can come from a handful of samples among $20\,000$.
+Counting outliers alongside $|L|$ distinguishes such runs from a broad bias.
+
+\paragraph*{Limits.}
+The standard CLD, with velocity-only noise given by its SDE, is outside the scope of this paper; it does not show the threshold of paper G.
+All results are for one four-dimensional Gaussian mixture, one schedule (setting D) and small networks trained on a CPU.
+Up to 12 networks per metric were trained; several comparisons are below the resolution of the tests, and thirteen of the nineteen pre-registered predictions failed.
+The mechanism of Sec.~\ref{sec:mechanism} is measured almost only for $P=I$; why the metric changes the breakage remains open.

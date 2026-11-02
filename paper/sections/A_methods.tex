@@ -1,0 +1,53 @@
+\section{Methods}
+\label{app:methods}
+
+\paragraph*{Metrics.}
+The $2\times2$ blocks $p$ of $P=I_2\otimes p$, acting on $(x_i,v_i)$, are, rounded to four digits (the exact values are in the repository),
+\begin{equation*}
+\dtwo:\ \begin{pmatrix}1&0\\0&2\end{pmatrix},
+\end{equation*}
+\begin{equation*}
+\optc{1.25}:\ \begin{pmatrix}-0.5385&-1.0770\\-0.8616&0.4308\end{pmatrix},
+\end{equation*}
+\begin{equation*}
+\optc{5}:\ \begin{pmatrix}-2.0100&-4.0200\\-0.8040&0.4020\end{pmatrix},
+\end{equation*}
+and $p=I$ for $P=I$.
+They have condition numbers 2, 1.25 and 5, $\kP=0$, $0$ and $-6$, and unit position variance of $p^{-1}p^{-\top}$.
+
+\paragraph*{Training details.}
+Batches of 1024 samples are drawn from a fixed training set of $200\,000$ samples of the mixture; half of each batch has $\log\sigma$ uniform in $[\log\smin,\log\smax]$, half in $[\log\smin,\log 10\smin]$.
+The learning rate rises linearly to $2\times10^{-3}$ over the first 1000 steps and then follows a cosine decay to $10^{-5}$ (Adam, $\beta_1=0.9$, $\beta_2=0.999$); the exponential moving average has decay $0.9995$.
+The noise level enters through Fourier features of $u=\ln(\sigma/\smin)/\ln(\smax/\smin)$.
+No validation set is used; the score error of Sec.~\ref{sec:learning} is measured on fresh samples of $p_t$.
+
+\paragraph*{Grids and coupling.}
+The finest grid has $K=4496$ steps ($h\approx0.0020$).
+The coarser grids used for the SDE have $K=281$, $562$, $1124$ ($h\approx0.032$, $0.016$, $0.008$).
+Their Gaussian increments are normalized sums of 16, 8 and 4 consecutive increments of the finest grid, so all levels share one Brownian path.
+The grid with $K=140$ ($h\approx0.064$) uses normalized sums of 32 draws from the same stream; its time points do not line up with the finest grid, so it is not strictly coupled to the other levels.
+For sampling seed $s$, the prior draw uses seed $100+s$ and the noise seed $200+s$; every metric and network uses the same seeds.
+The prior is sampled exactly from $p_T$.
+
+\paragraph*{Windows and perturbations.}
+For the window experiments of Sec.~\ref{sec:mechanism} the reverse time is split into eight bands at $\sigma=40$, $1$, $0.3$, $0.1$, $0.05$, $0.03$, $0.02$, $0.01$, $0.005$.
+A step belongs to the band that contains $\sigma(t_k)$ at its start.
+The perturbations of Sec.~\ref{sec:h9} are the learned-minus-exact path differences, in $Z$, of the final outliers of the twelve broken runs with $P=I$, taken at the injection level.
+They are added to all points of the prior draw (seed 100) whose Mahalanobis distance to the nearest component of $p_T$ is between 3.5 and 5 (291 points), four perturbations per point.
+A run whose final state is non-finite counts as $A=\infty$ and enters the percentiles as the largest value; nothing is clipped. In all 16 networks the 90th percentiles of $A$ were finite.
+
+\paragraph*{Statistics.}
+Breakage counts are compared with one-sided Fisher exact tests~\cite{fisher1922}, with Holm's correction where two secondary comparisons share a family~\cite{holm1979}.
+Two runs of the same network share the network and are not independent, so the network is the unit of the primary tests.
+Amplification ratios are compared with a one-sided Mann--Whitney test~\cite{mannwhitney1947}.
+
+\paragraph*{Pre-registration.}
+Each stage was pre-registered in a time-stamped file before its runs, with the criteria of every test (Table~\ref{tab:prereg}).
+Changes made after registration were recorded with their time and reason.
+One change concerned an unregistered exploratory threshold before the runs (stage B9).
+In stage B11, a small code check ($N=400$) displayed an amplification factor at a level that was not used for any test; this was recorded.
+The prediction of Test~\ref{test:h7} was written and hashed before the new networks were sampled.
+
+\paragraph*{Networks.}
+Table~\ref{tab:nets} lists every network with its score error and whether its probability-flow ODE broke.
+\input{tables/tab_nets}

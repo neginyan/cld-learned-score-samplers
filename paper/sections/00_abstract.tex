@@ -1,0 +1,9 @@
+We study learned scores for the critically damped Langevin (CLD) flow with an isotropic noise schedule specified by its marginals, added in a rescaled metric $Y=PZ$.
+\emph{The standard CLD, with velocity-only noise given by its SDE, does not show the failures studied here.}
+On a four-dimensional Gaussian mixture with $\smin=0.005$, we report two results and a partial mechanism, from 28 networks and pre-registered tests.
+First, a Heun-type integrator of the corrected reverse SDE, with a learned score and no retraining, reaches a median $|L|\leq0.083$ at 281 steps in all four metrics tested, where Euler--Maruyama gives $0.42$--$0.55$; at 140 steps it no longer suffices.
+Second, the learned probability-flow ODE broke for 10 of 12 networks with $P=I$ ($\kP=2>r=1$) and for 3 of 16 with metrics of $\kP\leq0$; at the network level only one pre-registered comparison was significant.
+Broken runs contain at most 0.12\% outliers; they break because a few tail trajectories fly far.
+These trajectories start in the tail of the prior, deviate while $\sigma$ is large, and jump at the end.
+In the last stretch the learned score amplifies perturbations of a part of the tail by orders of magnitude in every metric, whereas the exact-score amplification is ordered opposite to the fragility.
+Thirteen of nineteen pre-registered predictions failed; we report all of them.

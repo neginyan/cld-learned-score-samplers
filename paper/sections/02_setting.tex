@@ -1,0 +1,73 @@
+\section{Setting}
+\label{sec:setting}
+
+\paragraph*{Flow and data.}
+Per data coordinate, the CLD forward drift is $Bz$ with $z=(x,v)$ and
+\begin{equation}
+B=\beta\begin{pmatrix}0 & M^{-1}\\ -1 & -\Gamma M^{-1}\end{pmatrix},
+\label{eq:B}
+\end{equation}
+with the defaults of the official code, $\beta=4$, $M^{-1}=4$, $\Gamma=1$ (critical damping)~\cite{dockhorn2022cld}.
+The data are eight Gaussian modes on a unit circle in the position plane.
+Each mode has position standard deviation $s=0.08$, and the initial velocities are $v\sim\mathcal N(0,0.01)$.
+The phase space $Z=(x_1,v_1,x_2,v_2)$ is four-dimensional.
+This is setting D of paper G: $\smin=0.005=s/16$, $\smax=40$, $r=1$, and $T=\ln(\smax/\smin)/r\approx8.99$.
+
+\paragraph*{Isotropic blur in a metric.}
+Let $P=I_2\otimes p$ with an invertible $2\times2$ matrix $p$, and $Y=PZ$.
+We add the isotropic blur in $Y$:
+\begin{equation}
+Z_t=e^{Bt}Z_0+\sigma(t)\,P^{-1}\varepsilon,\qquad \varepsilon\sim\mathcal N(0,I).
+\label{eq:forward}
+\end{equation}
+In $Y$ this is the setting of paper G with flow $B_P=PBP^{-1}$.
+The threshold becomes
+\begin{equation}
+\kP=\lambda_{\max}\!\left(\Sym B_P\right).
+\end{equation}
+Proposition~1 of paper G holds with $\kP$ in place of $\kappa$: the required noise $G=2\sigma^2(rI-\Sym B_P)$ is positive semidefinite if and only if $r\geq\kP$~\cite{namba2026threshold}.
+In $Z$, the noise shape $\sigma^2P^{-1}P^{-\top}$ differs from $\sigma^2 I$ unless $P$ is orthogonal.
+A change of metric is therefore a different forward process, not the same process in other coordinates.
+We normalize $p$ so that the position blur in $Z$ is $\sigma$ for every metric.
+Then the target, the data blurred by $\smin$, has the same position variance $s^2+\smin^2$ in all metrics.
+
+We use four metrics:
+$P=I$ ($\kP=2$);
+$\dtwo$ ($\kP=0$, the lowest value reachable by a diagonal $p$);
+and $\optc{1.25}$, $\optc{5}$ ($\kP=0$ and $-6$).
+The metric $\optc{c}$ is the one of condition number $c$ with the lowest $\kP$; for critical damping its value is $\kP=\alpha+\|B-\alpha I\|/(2c)$, where $\alpha=-8$ is the double eigenvalue of $B$ and $\|B-\alpha I\|=20$.
+With $r=1$, only $P=I$ lies below its threshold ($r<\kP$).
+
+\paragraph*{Samplers.}
+All samplers run in $Y$ and are mapped back to $Z$.
+Let $\Gp$ be $G$ with its negative eigenvalues set to zero.
+As in paper G, the corrected SDE \Sb{} has the forward-time drift
+\begin{equation}
+f(y,t)=B_Py-\frac{1}{2}\left(G+\Gp\right)\shat(y,t)
+\label{eq:drift}
+\end{equation}
+and noise $\sqrt{\Gp}$, and the probability-flow ODE \Sc{} has the drift $B_Py-\frac12 G\,\shat$ and no noise.
+Both reproduce the forward marginals for every $r$ when $\shat$ is the exact score.
+Since $r\geq\kP$ in the metrics $\dtwo$, $\optc{1.25}$ and $\optc{5}$, there $\Gp=G$, and sampler \Sb{} is the standard reverse SDE.
+
+\paragraph*{Heun-type integrator.}
+On a uniform grid $t_0=T>t_1>\dots>t_K=0$ with step $h=T/K$, the Heun-type step of \Sb{} is
+\begin{align}
+y'&=y_k-h\,f(y_k,t_k)+\Delta W_k,\nonumber\\
+y_{k+1}&=y_k-\frac{h}{2}\Bigl[f(y_k,t_k)+f(y',t_{k+1})\Bigr]+\Delta W_k,
+\label{eq:heun}
+\end{align}
+with one Gaussian increment $\Delta W_k\sim\mathcal N\bigl(0,\,h\,\Gp(t_{k+1/2})\bigr)$ shared by both stages and $t_{k+1/2}=(t_k+t_{k+1})/2$.
+The noise does not depend on the state, so this is the stochastic Heun scheme for additive noise~\cite{kloeden1992numerical}.
+The increment covariance $h\,\Gp(t_{k+1/2})$ is the midpoint approximation of $\int_{t_{k+1}}^{t_k}\Gp(t)\,dt$.
+We therefore call the scheme Heun-type and do not claim a global order of convergence for the time-inhomogeneous SDE; its error with the exact score is reported in Sec.~\ref{sec:heun}.
+It costs two score evaluations per step.
+Euler--Maruyama (EM) uses $y_{k+1}=y_k-h f(y_k,t_k)+\Delta W_k$ with noise $\Gp(t_k)$.
+The ODE is integrated with Heun's method.
+
+\paragraph*{Measured quantities.}
+$L$ is the log ratio of the within-mode position variance to its target, computed per mode with each sample assigned to the nearest mode centre, and pooled (as in paper G).
+An \emph{outlier} is a sample farther than $0.5$ in position from every mode centre, or a non-finite sample.
+A run is \emph{broken} if it has a non-finite sample, $|L|>1$, or more than 1\% outliers.
+Every run uses $N=20\,000$ samples.
+Runs with the same seed share the prior draw and, for the SDE, the Brownian path.
