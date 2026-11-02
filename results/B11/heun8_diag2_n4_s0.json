@@ -1,0 +1,29 @@
+{
+ "metric": "diag2",
+ "net_seed": 4,
+ "seed": 0,
+ "levels": [
+  {
+   "K": 140,
+   "h": 0.06419426300472837,
+   "sub": 32,
+   "heun": {
+    "finite": true,
+    "L": 0.19785626347166332,
+    "L_vel": -0.07265426474457427,
+    "n_far": 0,
+    "max_weight_dev": 0.003599999999999992,
+    "n_bad": 0
+   },
+   "em": {
+    "finite": false,
+    "n_nonfinite": 24,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null,
+    "n_bad": 55
+   }
+  }
+ ]
+}

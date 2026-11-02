@@ -1,0 +1,69 @@
+{
+ "metric": "opt1.25",
+ "net_seed": 4,
+ "seed": 1,
+ "levels": [
+  {
+   "K": 140,
+   "h": 0.06419426300472837,
+   "sub": 32,
+   "heun": {
+    "finite": false,
+    "n_nonfinite": 2,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null,
+    "n_bad": 2
+   },
+   "em": {
+    "finite": false,
+    "n_nonfinite": 6,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null,
+    "n_bad": 20
+   }
+  },
+  {
+   "K": 281,
+   "h": 0.03198290683509599,
+   "sub": 16,
+   "heun": {
+    "finite": true,
+    "L": 0.057619336630668316,
+    "L_vel": -0.027718333530337598,
+    "n_far": 0,
+    "max_weight_dev": 0.004199999999999995,
+    "n_bad": 0
+   }
+  },
+  {
+   "K": 562,
+   "h": 0.015991453417547995,
+   "sub": 8,
+   "heun": {
+    "finite": true,
+    "L": 0.042383985474368384,
+    "L_vel": 3.125135365564667e-06,
+    "n_far": 0,
+    "max_weight_dev": 0.004049999999999998,
+    "n_bad": 0
+   }
+  },
+  {
+   "K": 1124,
+   "h": 0.007995726708773998,
+   "sub": 4,
+   "heun": {
+    "finite": true,
+    "L": 0.0439004904686388,
+    "L_vel": 0.004281502339293268,
+    "n_far": 0,
+    "max_weight_dev": 0.003899999999999987,
+    "n_bad": 0
+   }
+  }
+ ]
+}
