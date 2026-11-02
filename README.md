@@ -7,6 +7,7 @@ Code, stored results, the 28 trained networks and a verification script for the 
 **Paper:** T. Namba, *Learned scores on the critically damped Langevin flow: a corrected sampler in 281 steps, and a metric-dependent fragility of the probability flow*, preprint, Zenodo (2026), [doi:10.5281/zenodo.23899157](https://doi.org/10.5281/zenodo.23899157).
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23898962.svg)](https://doi.org/10.5281/zenodo.23898962)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/neginyan/cld-learned-score-samplers/blob/main/demo/cld_learned_score_demo.ipynb)
 [![verify](https://github.com/neginyan/cld-learned-score-samplers/actions/workflows/verify.yml/badge.svg)](https://github.com/neginyan/cld-learned-score-samplers/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -29,6 +30,12 @@ Every statement in the paper carries its status: a *Proposition* (proved in an e
 +y_pred = y - h * f(y, t) + dW
 +y_next = y - 0.5 * h * (f(y, t) + f(y_pred, t - h)) + dW       # Heun-type (same dW in both stages)
 ```
+
+## Demo
+
+The [Colab notebook](demo/cld_learned_score_demo.ipynb) runs on a CPU in about 3 minutes with one of the stored networks (nothing is trained). It shows:
+- the same learned score and the same Brownian path through the Heun-type corrected sampler at 281 steps and Euler–Maruyama at 281 and 562 steps (the same number of score evaluations): the Heun-type sampler lands on the target, Euler–Maruyama spreads every mode;
+- the probability-flow ODE: the handful of tail trajectories that broke a stored run, re-run with the learned and with the exact score.
 
 ## Verify
 
@@ -57,6 +64,7 @@ No GPU is used. The score networks are a small NumPy MLP. On the machine that pr
 | `tables/`, `figures/` | regenerated tables and figures |
 | `verification/` | `run_all.py` and the expected numbers |
 | `paper/` | LaTeX source of the paper (REVTeX 4.2) |
+| `demo/` | Colab notebook |
 | `preregistration/` | pre-registration files written before the runs (Japanese originals, unmodified) and the hashes recorded before sampling; Table 3 of the paper lists every prediction in English |
 
 The networks for P = I seeds 1–2 were trained in an earlier stage and reused unchanged; diag(1,2) seeds 1–2 come from a later stage, the others from the stages reported here. Resumed training reproduces an uninterrupted run bit for bit.
