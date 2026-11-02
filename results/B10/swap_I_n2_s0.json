@@ -1,0 +1,124 @@
+{
+ "metric": "I",
+ "net_seed": 2,
+ "seed": 0,
+ "N": 20000,
+ "K": 4496,
+ "h": 0.0019989316771934994,
+ "sigma_c": [
+  0.03,
+  0.01,
+  0.007,
+  0.006
+ ],
+ "k_switch": {
+  "0.03": 3600,
+  "0.01": 4150,
+  "0.007": 4328,
+  "0.006": 4405
+ },
+ "steps_below": {
+  "0.03": 896,
+  "0.01": 346,
+  "0.007": 168,
+  "0.006": 91
+ },
+ "learned_only": {
+  "finite": false,
+  "n_nonfinite": 1,
+  "L": null,
+  "L_vel": null,
+  "n_far": null,
+  "max_weight_dev": null,
+  "n_bad": 14,
+  "broken": true
+ },
+ "exact_only": {
+  "finite": true,
+  "L": 0.01179086535182987,
+  "L_vel": -0.012837463555925837,
+  "n_far": 0,
+  "max_weight_dev": 0.005349999999999994,
+  "n_bad": 0,
+  "broken": false
+ },
+ "A_learned_then_exact": {
+  "0.03": {
+   "finite": true,
+   "L": 0.03242806360932338,
+   "L_vel": 0.010235240817111557,
+   "n_far": 0,
+   "max_weight_dev": 0.00605,
+   "n_bad": 0,
+   "broken": false
+  },
+  "0.01": {
+   "finite": true,
+   "L": 107.58741086556978,
+   "L_vel": 109.03454999727317,
+   "n_far": 8,
+   "max_weight_dev": 0.007500000000000007,
+   "n_bad": 8,
+   "broken": true
+  },
+  "0.007": {
+   "finite": false,
+   "n_nonfinite": 1,
+   "L": null,
+   "L_vel": null,
+   "n_far": null,
+   "max_weight_dev": null,
+   "n_bad": 10,
+   "broken": true
+  },
+  "0.006": {
+   "finite": false,
+   "n_nonfinite": 1,
+   "L": null,
+   "L_vel": null,
+   "n_far": null,
+   "max_weight_dev": null,
+   "n_bad": 14,
+   "broken": true
+  }
+ },
+ "B_exact_then_learned": {
+  "0.03": {
+   "finite": true,
+   "L": 0.06975313402368298,
+   "L_vel": -0.01690020242312121,
+   "n_far": 0,
+   "max_weight_dev": 0.006099999999999994,
+   "n_bad": 0,
+   "broken": false
+  },
+  "0.01": {
+   "finite": true,
+   "L": 0.07412351118535603,
+   "L_vel": -0.015254972395138424,
+   "n_far": 1,
+   "max_weight_dev": 0.005849999999999994,
+   "n_bad": 1,
+   "broken": false
+  },
+  "0.007": {
+   "finite": true,
+   "L": 0.06582160867832611,
+   "L_vel": -0.018668668685307203,
+   "n_far": 0,
+   "max_weight_dev": 0.005599999999999994,
+   "n_bad": 0,
+   "broken": false
+  },
+  "0.006": {
+   "finite": true,
+   "L": 0.020988724466910063,
+   "L_vel": -0.012971310412588396,
+   "n_far": 0,
+   "max_weight_dev": 0.005349999999999994,
+   "n_bad": 0,
+   "broken": false
+  }
+ },
+ "sec": 837.0431814193726
+}

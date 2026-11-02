@@ -1,0 +1,114 @@
+{
+ "metric": "I",
+ "r": 1.0,
+ "kappa_P": 2.0,
+ "cond": 1.0,
+ "net_seed": 8,
+ "seed": 0,
+ "N": 20000,
+ "levels": [
+  {
+   "K": 281,
+   "h": 0.03198290683509599,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.4150629273698616,
+    "L_vel": 0.6640825811583704,
+    "n_far": 0,
+    "max_weight_dev": 0.0037500000000000033
+   }
+  },
+  {
+   "K": 562,
+   "h": 0.015991453417547995,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.2445481666788913,
+    "L_vel": 0.1781145230893882,
+    "n_far": 0,
+    "max_weight_dev": 0.003500000000000003
+   }
+  },
+  {
+   "K": 1124,
+   "h": 0.007995726708773998,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.13278609796768753,
+    "L_vel": -0.056354266782150726,
+    "n_far": 0,
+    "max_weight_dev": 0.0028500000000000053
+   }
+  },
+  {
+   "K": 2248,
+   "h": 0.003997863354386999,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.08365642458440277,
+    "L_vel": -0.08471768447939416,
+    "n_far": 0,
+    "max_weight_dev": 0.0027500000000000024
+   }
+  },
+  {
+   "K": 4496,
+   "h": 0.0019989316771934994,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null,
+    "far_idx": [
+     875,
+     9612,
+     15342,
+     18285,
+     19424
+    ]
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.06108817341191289,
+    "L_vel": -0.05758928012038944,
+    "n_far": 0,
+    "max_weight_dev": 0.0024000000000000132
+   }
+  }
+ ],
+ "sec": 1802.090750694275
+}

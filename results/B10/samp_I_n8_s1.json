@@ -1,0 +1,124 @@
+{
+ "metric": "I",
+ "r": 1.0,
+ "kappa_P": 2.0,
+ "cond": 1.0,
+ "net_seed": 8,
+ "seed": 1,
+ "N": 20000,
+ "levels": [
+  {
+   "K": 281,
+   "h": 0.03198290683509599,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.4145207585623248,
+    "L_vel": 0.664224028313126,
+    "n_far": 0,
+    "max_weight_dev": 0.003699999999999995
+   }
+  },
+  {
+   "K": 562,
+   "h": 0.015991453417547995,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.24001069715647116,
+    "L_vel": 0.18285142903626808,
+    "n_far": 0,
+    "max_weight_dev": 0.0018499999999999905
+   }
+  },
+  {
+   "K": 1124,
+   "h": 0.007995726708773998,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.134130280727521,
+    "L_vel": -0.04465071703277367,
+    "n_far": 0,
+    "max_weight_dev": 0.002150000000000013
+   }
+  },
+  {
+   "K": 2248,
+   "h": 0.003997863354386999,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.08286941639713086,
+    "L_vel": -0.07460056423347447,
+    "n_far": 0,
+    "max_weight_dev": 0.0027500000000000024
+   }
+  },
+  {
+   "K": 4496,
+   "h": 0.0019989316771934994,
+   "ode": {
+    "finite": false,
+    "n_nonfinite": 1,
+    "L": null,
+    "L_vel": null,
+    "n_far": null,
+    "max_weight_dev": null,
+    "far_idx": [
+     633,
+     1288,
+     2043,
+     2606,
+     3088,
+     6876,
+     7392,
+     8452,
+     8840,
+     11892,
+     12899,
+     13167,
+     15008,
+     17860,
+     18141
+    ]
+   },
+   "fixed": {
+    "finite": true,
+    "L": 0.05426394082867471,
+    "L_vel": -0.04864026414963685,
+    "n_far": 0,
+    "max_weight_dev": 0.0030999999999999917
+   }
+  }
+ ],
+ "sec": 1808.921047449112
+}
