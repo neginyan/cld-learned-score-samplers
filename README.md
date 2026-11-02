@@ -4,8 +4,9 @@
 
 Code, stored results, the 28 trained networks and a verification script for the paper by Taishi Namba (2026).
 
-**Paper:** T. Namba, *Learned scores on the critically damped Langevin flow: a corrected sampler in 281 steps, and a metric-dependent fragility of the probability flow*, preprint, Zenodo (2026).
+**Paper:** T. Namba, *Learned scores on the critically damped Langevin flow: a corrected sampler in 281 steps, and a metric-dependent fragility of the probability flow*, preprint, Zenodo (2026), [doi:10.5281/zenodo.23899157](https://doi.org/10.5281/zenodo.23899157).
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23898962.svg)](https://doi.org/10.5281/zenodo.23898962)
 [![verify](https://github.com/neginyan/cld-learned-score-samplers/actions/workflows/verify.yml/badge.svg)](https://github.com/neginyan/cld-learned-score-samplers/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -71,7 +72,8 @@ The study was carried out with AI assistants: Anthropic Claude (planning, traini
 
 ## Citation
 
-Please cite the paper and this repository; see `CITATION.cff`.
+Please cite the paper ([doi:10.5281/zenodo.23899157](https://doi.org/10.5281/zenodo.23899157)) and this repository; see `CITATION.cff`.
+The code is archived at Zenodo: [doi:10.5281/zenodo.23898962](https://doi.org/10.5281/zenodo.23898962) (all versions; v1.0.0 is [10.5281/zenodo.23898963](https://doi.org/10.5281/zenodo.23898963)).
 
 ## License
 

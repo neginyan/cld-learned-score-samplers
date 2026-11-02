@@ -5,6 +5,7 @@ type: software
 version: 1.0.0
 date-released: 2026-11-02
 license: MIT
+doi: "10.5281/zenodo.23898962"
 repository-code: "https://github.com/neginyan/cld-learned-score-samplers"
 authors:
   - family-names: "Namba"
@@ -26,6 +27,7 @@ preferred-citation:
       given-names: "Taishi"
       orcid: "https://orcid.org/0009-0002-7098-970X"
   year: 2026
+  doi: "10.5281/zenodo.23899157"
   publisher:
     name: "Zenodo"
   notes: "Preprint"
