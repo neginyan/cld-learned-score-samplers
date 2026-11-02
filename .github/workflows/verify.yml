@@ -1,0 +1,21 @@
+   name: verify
+
+   on:
+     push:
+       branches: [main]
+     pull_request:
+     workflow_dispatch:
+
+   jobs:
+     verify:
+       runs-on: ubuntu-latest
+       timeout-minutes: 90
+       steps:
+         - uses: actions/checkout@v4
+         - uses: actions/setup-python@v5
+           with:
+             python-version: "3.13"
+         - name: Install dependencies
+           run: pip install numpy==2.5.3 scipy==1.18.1 matplotlib==3.11.2
+         - name: Run all checks
+           run: python verification/run_all.py
